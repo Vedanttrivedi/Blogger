@@ -1,0 +1,53 @@
+<style type="text/css">
+	#main{
+		margin:50px 300px;
+		width: 50%;
+		border:1px dashed orangered;
+		padding: 5px;
+	}
+	.main
+	{
+		margin:50px 400px;
+		border:1px dashed orangered;
+		padding: 5px 7px;
+		width: 40%;
+		display: flex;
+	}
+	.name
+	{
+		border:1px solid red;
+		text-align: center;
+		padding: 10px;
+		width: 80%;
+		justify-content: center;
+		color: orangered;
+	}
+</style>
+
+{% extends 'home.html' %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+ {% if messages %}	
+
+      {% for msg in messages %}
+        <div id="main" style="background-color: lightgreen;">
+			<p>{{msg}}</p>
+		</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+{% if q %}
+{% for friend in range(0,len,3)%}
+ 		<div class="main">
+			<div class="name">NAME : <span style="color:red;text-transform: capitalize;">{{q[friend]}}</span> </div>
+	<div class="name">CONTACT BLOGGER: <span style="color:red;">{{q[friend+1]}}</span></div>
+	<div class="name">LIVES IN : <span style="color:red;text-transform: capitalize;">{{q[friend+2]}}</span></div>
+		</div>
+ 	{% endfor %}
+ 	{% endif %}
+
+
+{% endblock %}

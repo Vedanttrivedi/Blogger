@@ -1,0 +1,102 @@
+<style type="text/css">
+	.main{
+		margin:50px 300px;
+		width: 50%;
+		border:1px dashed orangered;
+		padding: 5px;
+	}
+	.title
+	{
+		border:1px solid red;
+		padding: 4px;
+		text-align: center;
+		font-size: 20px;
+		text-transform: capitalize;
+	}
+	.text
+	{
+
+		border:1px solid red;
+		padding: 4px;
+		font-size: 20px;
+		text-transform: capitalize;	
+	}
+</style>
+{%	extends	'home.html'	%}
+{%	block content %}
+	{%if user%}
+	<p style="position: fixed;top:70px;right: 10px;color:red;font-size: 30px;">{{user}}</p>
+	{%	endif	%}
+
+{% with messages = get_flashed_messages() %}
+ {% if messages %}	
+
+      {% for msg in messages %}
+        <div class="main" style="background-color: lightgreen;">
+			<p>{{msg}}</p>
+		</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  
+
+
+{% if personal %}
+
+	{% for i in range(0,lem,4)%}
+		<div class="main" style="padding: 10px;position: fixed;top:50px;right: 10px;width: 25%;">
+			<form action="{{url_for('pic')}}" method="post" enctype="mulpart/form-data">
+			<img src="" style="border-radius: 40%;" width="200px" height="200px"><br>
+			<input type="file" name="good" value="update profile picture" multiple>
+			<input type="submit" name="" value="update" class="btn btn-primary">
+		</form>
+			<div class="data">
+				<p style="color:red;font-size: 20px;text-transform: capitalize;float: right;">{{personal[i]}}</p>
+				<br><p style="color:orangered;font-size: 20px;text-transform: capitalize;float: right;">{{personal[i+1]}}</p>
+				<br><p style="color:brown;font-size: 20px;text-transform: capitalize;float: right;">{{personal[i+2]}}</p>
+			</div>
+		</div>
+
+	{% endfor %}
+
+{% endif %}
+
+
+
+ {%if pos %}
+ <h1 style="text-align: center;margin:80px 450px;text-transform: capitalize;color:blue;padding: 7px;background-color: violet;width: 20%;">your oldPosts</h1>
+
+ 	{% for i in range(0,len,3)%}
+ 	 <form action="{{url_for('updatepost')}}" method="post">
+ 		<div class="main">
+			<div class="title">
+				<p>{{pos[i+2]}}</p>
+			</div>
+			<div class="text">
+				<p>{{pos[i+1]}}</p>
+			</div>
+
+			<div class="text" style="float: right;">
+				ON :<a href="http://127.0.0.1:5000/dating/{{pos[i]}}"><span style="float: right;color:brown;">{{pos[i]}}</span></a>
+			</div>
+				<div class="text">
+					<input type="text" name="good" value="{{pos[i+2]}}" style="visibility: hidden;width: 15%;">
+					<input type="text" name="content" value="{{pos[i+1]}}" style="visibility: hidden;width: 10%;">
+					
+				<input type="submit" name="" value="update" style="padding: 13px;background-color: white;color: green;border: 1px solid green;">
+				<input type="submit" name="" value="delete" style="padding: 13px;background-color: white;color: red;border: 1px solid red;" formaction="{{url_for('deletepost')}}">
+			</div>
+		</div>
+	</form>
+ 	{% endfor %}
+ {% endif %}
+ {%	endblock%}
+<!--
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>-->

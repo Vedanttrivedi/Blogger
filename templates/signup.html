@@ -1,0 +1,80 @@
+<style type="text/css">
+	body { background:rgb(30,30,40); }
+form { max-width:420px; margin:50px auto; }
+
+.feedback-input {
+  
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight:500;
+  font-size: 18px;
+  border-radius: 5px;
+  line-height: 22px;
+  background-color: transparent;
+  border:1px solid #CC6666;
+  transition: all 0.3s;
+  padding: 13px;
+  margin-bottom: 15px;
+  width:100%;
+  box-sizing: border-box;
+  outline:0;
+}
+
+.feedback-input:focus { border:2px solid #CC4949; }
+
+textarea {
+  height: 150px;
+  line-height: 150%;
+  resize:vertical;
+}
+body
+{
+  background-color: white;
+}
+[type="submit"] {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  width: 100%;
+  background:#CC6666;
+  border-radius:5px;
+  border:0;
+  cursor:pointer;
+  color:white;
+  font-size:24px;
+  padding-top:10px;
+  padding-bottom:10px;
+  transition: all 0.3s;
+  margin-top:-4px;
+  font-weight:700;
+}
+input{color:red;}
+[type="submit"]:hover { background:#CC4949; }
+	
+</style>
+
+<form action="index.html" method="POST" onsubmit="return val();">
+	<h1 style="color: red;font-size: 30px;">Signup Form</h1>
+  <p id="p" style="color:black;background-color: red;padding: 2px;"></p>
+	<input name="username" type="text" class="feedback-input" placeholder="username" required id="name">   
+  	<input name="email" type="email" class="feedback-input" placeholder="email" required id="email">
+  	<input name="password" type="text" class="feedback-input" placeholder="password" required id="password">
+  	   
+  	<input name="password" type="password" class="feedback-input" placeholder="confirm password" required id="conpassword">
+  	<input type="submit" value="SUBMIT" id="sub">
+	<a href="{{url_for('login')}}" style="display:block;margin-top: 20px;font-size: 20px;text-transform: capitalize;">already have account?
+	</a>
+</form>
+
+
+<script type="text/javascript">
+  function val()
+  {
+    var pass=document.querySelector("#password").value;
+    var conpass=document.querySelector("#conpassword").value;
+    if (pass!=conpass)
+    {
+      document.querySelector("#p").innerText="password and confirm password must be same!";
+      alert('hello world');
+      return false;
+    }
+    return true;
+  }
+</script>

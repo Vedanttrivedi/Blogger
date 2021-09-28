@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		ul
+		{
+			list-style-type: none;
+			padding: 7px;
+
+		}
+		ul li
+		{
+			float: left;
+			margin-left: 15px;
+			color:violet;
+			padding: 3px;
+			font-size: 25px;
+			text-transform: capitalize;
+		}
+		ul li a
+		{
+			text-decoration: none;
+		}
+		ul li a:hover
+		{
+			color: red;
+		}
+		.main
+		{
+		margin:50px 300px;
+		width: 50%;
+		border:1px dashed orangered;
+		padding: 5px;
+		}
+		.main{ max-width:700px; margin:70px auto;}
+
+		.title
+		{
+			border:1px solid red;
+			padding: 6px;
+			text-align: center;
+			font-size: 25px;
+			text-transform: capitalize;
+			color:red;
+		}
+		.text
+		{
+
+			border:1px solid red;
+			padding: 4px;
+			color:orangered;
+			font-size: 20px;
+			text-transform: capitalize;
+				
+		}
+		a
+		{
+			text-decoration: none;
+		}
+		a:hover
+		{
+			color:blue;
+		}
+	</style>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+<body style="font-family: cursive;">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{{url_for('home')}}">HOME</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{{url_for('post')}}">post <span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{url_for('login')}}">login</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{url_for('logout')}}">logout</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" action="{{url_for('friends')}}" method="POST">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search Bloggers"  name="good" required>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+
+{% block content %}
+{% with messages = get_flashed_messages()%}
+{% if messages %}
+	{% for msg in messages %}
+		<div class="main" style="background-color: lightgreen;padding: 10px;color:black;margin-top:5px;text-align: center;">
+			<p>{{msg}}</p>
+		</div>
+	{% endfor %}
+
+{% endif %}
+{% endwith %}
+<h1 style="color: red;margin: 10px 450px;font-size: 50px;">Home Page</h1>
+{% if name %}
+<h1 style="color: red;font-size: 15px;position: fixed;right:10px;top:80px;">Hello <span style="color:orangered;">{{name}}</span></h1>
+{% endif %}
+
+{% if posts %}
+	{% for post in range(0,len,4)%}
+		<div class="main">
+			<div class="title" class="container">
+				<p>{{posts[post+2]}}</p>
+			</div>
+			<div class="text">
+				<p>{{posts[post+1]}}</p>
+			</div>
+			<div class="text" style="color:black;">
+				<p>
+					By <a href="http://127.0.0.1:4000/personalpost/{{posts[post+3]}}"><span style="color:rgb(250,10,25);">{{posts[post+3]}}</span></a>
+					<span style="text-align: center;">
+					
+					</span>
+					<span style="float: right;color:black;">ON :<a href="http://127.0.0.1:4000/dating/{{posts[post]}}"><span style="float: right;color:brown;">{{posts[post]}}</span></a></span>
+				</p>
+			</div>
+		</div>
+	{% endfor %}
+	{% endif %}
+{% endblock %}
+</body>
+</html>

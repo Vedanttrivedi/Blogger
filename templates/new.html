@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		.main
+		{
+			border:2px solid red;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+		}
+		.box
+		{
+			width: 20%;
+			border:1px dashed pink;
+			justify-content: center;
+			align-items: center;
+		}
+		 img
+		{
+			border-radius: 50%;
+			width: 20%;
+		}
+
+	</style>
+</head>
+<body>
+{% if  data%}
+	<div class="main">
+		{% for i in range(0,len,3)%}
+		<div class="box">
+			<div class="img"><img src="{{url_for('static',filename=data[i+2])}}"></div>
+			<div  class="data">
+				<p style="font-size: 20px;color:red;font-family: cursive;">{{data[i]}}</p>
+				<p style="font-size: 20px;color:orangered;font-family: cursive;">{{data[i+1]}}</p>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+{% endif %}
+</body>
+</html>

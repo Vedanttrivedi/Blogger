@@ -1,0 +1,71 @@
+<style type="text/css">
+	.main
+	{
+		margin:50px 400px;
+		border:1px dashed orangered;
+		padding: 5px 7px;
+		width: 40%;
+		
+	}
+	.name
+	{
+		border:1px solid red;
+		text-align: center;
+		padding: 10px;
+		width: 80%;
+		
+		color: orangered;
+	}
+	.main
+		{
+		margin:50px 300px;
+		width: 50%;
+		border:1px dashed orangered;
+		padding: 5px;
+		}
+		.main{ max-width:700px; margin:70px auto;}
+
+		.title
+		{
+			border:1px solid red;
+			padding: 6px;
+			text-align: center;
+			font-size: 25px;
+			text-transform: capitalize;
+			color:red;
+		}
+		.text
+		{
+
+			border:1px solid red;
+			padding: 4px;
+			color:orangered;
+			font-size: 20px;
+			text-transform: capitalize;	
+		}
+</style>
+
+{% extends 'home.html' %}
+
+{% block content %}
+{% if posts %}
+	{% for post in range(0,len,4)%}
+		<div class="main">
+			<div class="title" class="container">
+				<p>{{posts[post+3]}}</p>
+			</div>
+			<div class="text">
+				<p>{{posts[post+2]}}</p>
+			</div>
+			<div class="text" style="color:black;">
+				<p>
+					By <a href="http://127.0.0.1:5000/personalpost/{{posts[post+3]}}"><span style="color:rgb(250,10,25);">{{posts[post+1]}}</span></a>
+					<span style="float: right;color:black;">ON :<a href="http://127.0.0.1:5000/dating/{{posts[post]}}"><span style="float: right;color:brown;">{{posts[post]}}</span></a></span>
+				</p>
+			</div>
+		</div>
+	{% endfor %}
+{% endif %}
+
+
+{% endblock %}

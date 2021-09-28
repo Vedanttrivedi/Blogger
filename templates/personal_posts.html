@@ -1,0 +1,48 @@
+<style type="text/css">
+	.main{
+		margin:50px 300px;
+		width: 50%;
+		border:1px dashed orangered;
+		padding: 5px;
+	}
+	.title
+	{
+		border:1px solid red;
+		padding: 4px;
+		text-align: center;
+		font-size: 20px;
+		text-transform: capitalize;
+	}
+	.text
+	{
+
+		border:1px solid red;
+		padding: 4px;
+		font-size: 20px;
+		text-transform: capitalize;	
+	}
+</style>
+{% extends 'home.html' %}
+{% block content %}
+
+{% if name %}
+ 		<h1 style="color:red;text-transform: capitalize;padding: 10px;background-color: orange;text-align: center;">{{name}}'s all posts</h1>
+ 	{% endif %}
+{% if q %}
+{% for i in range(0,len,3)%}
+ 		<div class="main">
+			<div class="title">
+				<p>{{q[i+2]}}</p>
+			</div>
+			<div class="text" >
+				<p>{{q[i+1]}}</p>
+			</div>
+			
+			<div class="text" style="padding: 15px;">
+				<p><span style="float:left;color:black;">ON :<span style="float: right;color:brown;">{{q[i]}}</span></span></p>
+			</div>
+		</div>
+ 	{% endfor %}
+ 	{% endif %}
+
+{% endblock %}
